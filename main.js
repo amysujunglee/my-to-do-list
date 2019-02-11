@@ -9,21 +9,29 @@ github.com/amysujunglee
 
 Reference:
 - https://www.w3schools.com/howto/howto_js_todolist.asp
-- https://codepen.io/franklynroth/pen/ZYeaBd - Edit To-Do
+- https://codepen.io/franklynroth/pen/ZYeaBd (How to edit a To-Do)
 
 Steps:
 1. Create a input area and result area
-2. Create a function for adding a new to-do
-3. Create a function for removing the exsiting to-do
-4. Create a function for showing which task is completed (check mark)
-5. Create a function for clearing out the to-do list
-6. Create a function for editing the exsiting to-do
+2. Add a new to-do
+3. Remove the exsiting to-do
+4. Show which task is completed (+ check mark)
+5. Clear out the exsiting to-dos
+6. Edit the exsiting to-do
+7. Save the current to-do list
 
-Takeaways:
-- How to save the to-do list (Archive)
+Problems:
+- How to save the to-do list (Archive?)
+- How to edit the exsiting task
+- How to display the text input when pressing 'Enter' key
 
 */
-
+// Setting some unchangeable variables
+const form = document.querySelector('form');
+const myInput = document.getElementById('myInput');
+const addBtn = document.getElementById('addBtn');
+const clearBtn = document.getElementById('clearBtn');
+const myList = document.getElementById('myList');
 
 // *** 2. To add a new to-do using <li> tag
 function newElement() {
@@ -33,10 +41,10 @@ function newElement() {
 	let li = document.createElement('li');
     
     // to store the value from the input area into 'inputValue'
-	let inputValue = document.getElementById('myInput').value;
+	let inputValue = myInput.value;
     
     // (2) and give it some content
-	var toDo = document.createTextNode(inputValue);
+	let toDo = document.createTextNode(inputValue);
     
     // (3) add the text node to the mewly created li
 	li.appendChild(toDo);
@@ -45,33 +53,50 @@ function newElement() {
 		alert('You must write something!');
 	} else {
         // (4) add the newly created element and its content into the DOM 
-		document.getElementById('myList').appendChild(li);
+		myList.appendChild(li);
 
 	}
     // (5) Reset the input area text(value) after adding the new to-do
-	document.getElementById('myInput').value = '';
+	myInput.value = '';
     
     // *** 3. To create a "close" button and append it to each list item
-    var span = document.createElement('span');
-    var txt = document.createTextNode('x');
+    let span = document.createElement('span');
+    let txt = document.createTextNode('x');
     
     span.className = 'close';
     span.appendChild(txt);
     li.appendChild(span);
     
-    var close = document.getElementsByClassName('close');
-    for (var i = 0; i < close.length; i++) {
+    let close = document.getElementsByClassName('close');
+    for (let i = 0; i < close.length; i++) {
         close[i].onclick = function () {
-            var hideLi = this.parentElement; // <li> tag
+            let hideLi = this.parentElement; // <li> tag
             hideLi.style.display = 'none';
         }
     }
  }
 
+// (Optional) Display the text input when pressing 'Enter' key
+form.addEventListener('submit', function(e) {
+   e.preventDefault();
+    
+    newElement(myInput.value);
+    myInput.value = '';
+});
+
 // *** 4. Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
+myList.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
   }
 }, false);
+
+// *** 5. Clear out all the tasks in the list
+clearBtn.addEventListener('click', function() {
+    localStorage.clear();
+    while (myList.firstChild) {
+    myList.removeChild(myList.firstChild);
+  }
+});
+
+console.log(localStorage);

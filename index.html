@@ -10,11 +10,18 @@
 
     <div id="myDIV" class="header">
         <h2>My To Do List</h2>
-        <input type="text" id="myInput" placeholder="Title...">
-        <span onclick="newElement()" class="addBtn">Add</span>
+
+        <form>
+            <input type="text" id="myInput" placeholder="Title...">
+        </form>
+        <div class="createToDo">
+            <button onclick="newElement()" id="addBtn">Add</button>
+            <button id="clearBtn">Clear All</button>
+        </div>
     </div>
 
-    <ul id="myList"></ul>
+    <ul id="myList">
+    </ul>
 
     <script type="text/javascript" src="main.js"></script>
 </body>
