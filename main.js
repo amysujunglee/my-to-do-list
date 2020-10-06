@@ -38,35 +38,35 @@ function newElement() {
     // document.createElement() method creates the HTML element specified by tagName, <li>
     // This creates a new <li> and inserts it before the element
     // (1) Create a new li element
-	let li = document.createElement('li');
-    
+    let li = document.createElement('li');
+
     // to store the value from the input area into 'inputValue'
-	let inputValue = myInput.value;
-    
+    let inputValue = myInput.value;
+
     // (2) and give it some content
-	let toDo = document.createTextNode(inputValue);
-    
+    let toDo = document.createTextNode(inputValue);
+
     // (3) add the text node to the mewly created li
-	li.appendChild(toDo);
+    li.appendChild(toDo);
 
-	if (inputValue === '') {
-		alert('You must write something!');
-	} else {
+    if (inputValue === '') {
+        alert('You must write something!');
+    } else {
         // (4) add the newly created element and its content into the DOM 
-		myList.appendChild(li);
+        myList.appendChild(li);
 
-	}
+    }
     // (5) Reset the input area text(value) after adding the new to-do
-	myInput.value = '';
-    
+    myInput.value = '';
+
     // *** 3. To create a "close" button and append it to each list item
     let span = document.createElement('span');
     let txt = document.createTextNode('x');
-    
+
     span.className = 'close';
     span.appendChild(txt);
     li.appendChild(span);
-    
+
     let close = document.getElementsByClassName('close');
     for (let i = 0; i < close.length; i++) {
         close[i].onclick = function () {
@@ -74,29 +74,27 @@ function newElement() {
             hideLi.style.display = 'none';
         }
     }
- }
+}
 
 // (Optional) Display the text input when pressing 'Enter' key
-form.addEventListener('submit', function(e) {
-   e.preventDefault();
-    
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
     newElement(myInput.value);
     myInput.value = '';
 });
 
 // *** 4. Add a "checked" symbol when clicking on a list item
-myList.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
+myList.addEventListener('click', function (ev) {
+    if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+    }
 }, false);
 
 // *** 5. Clear out all the tasks in the list
-clearBtn.addEventListener('click', function() {
+clearBtn.addEventListener('click', function () {
     localStorage.clear();
     while (myList.firstChild) {
-    myList.removeChild(myList.firstChild);
-  }
+        myList.removeChild(myList.firstChild);
+    }
 });
-
-console.log(localStorage);
