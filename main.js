@@ -1,12 +1,5 @@
 /*
 
-My To Do List
-by Amy Lee
-
-To see more works:
-amysujunglee.com
-github.com/amysujunglee
-
 Reference:
 - https://www.w3schools.com/howto/howto_js_todolist.asp
 - https://codepen.io/franklynroth/pen/ZYeaBd (How to edit a To-Do)
