@@ -28,10 +28,10 @@ Problems:
 */
 // Setting some unchangeable variables
 const form = document.querySelector('form');
-const myInput = document.getElementById('myInput');
-const addBtn = document.getElementById('addBtn');
-const clearBtn = document.getElementById('clearBtn');
-const myList = document.getElementById('myList');
+const myInput = document.querySelector('#myInput');
+const addBtn = document.querySelector('#addBtn');
+const clearBtn = document.querySelector('#clearBtn');
+const myList = document.querySelector('#myList');
 
 // *** 2. To add a new to-do using <li> tag
 function newElement() {
